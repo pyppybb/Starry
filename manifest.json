@@ -3,7 +3,7 @@
   "name": "糖罐子",
   "short_name": "糖罐子",
   "description": "一个记录幸福瞬间、管理任务和使用番茄钟的可爱应用。",
-  "start_url": "/index.html",
+"start_url": "https://pypyybb.github.io/Starry/index.html",
   "display": "standalone",
   "background_color": "#fffaf0",
   "theme_color": "#ff6f91",
