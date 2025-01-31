@@ -12,6 +12,9 @@
   <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
   
+   <!-- 动态主题颜色 -->
+  <meta name="theme-color" content="#ff6f91">
+  
   <style>
     /* 全局样式与主题变量 */
     :root {
@@ -1416,19 +1419,39 @@
       updateDisplayTimer();
     }
 
-    /************************************************
+   /************************************************
      *           （五）主题切换相关代码
      ************************************************/
-    // 主题列表
-    const themes = ['theme-pink', 'theme-blue', 'theme-green', 'theme-morandi', 'theme-dopamine', 'theme-cream', 'theme-dark'];
+    // 主题列表，添加对应的theme-color
+    const themes = [
+      { class: 'theme-pink', color: '#ff6f91' },
+      { class: 'theme-blue', color: '#4facfe' },
+      { class: 'theme-green', color: '#a8e063' },
+      { class: 'theme-morandi', color: '#8e9aaf' },
+      { class: 'theme-dopamine', color: '#ff9a9e' },
+      { class: 'theme-cream', color: '#f6d365' },
+      { class: 'theme-dark', color: '#bb86fc' }
+    ];
     let currentThemeIndex = 0;
-
+    
+    // 获取 <meta name="theme-color"> 元素
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    
     // 点击标题切换主题
     const themeSwitcherElement = document.getElementById("theme-switcher");
     themeSwitcherElement.addEventListener("click", () => {
       currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-      document.body.classList.remove(...themes);
-      document.body.classList.add(themes[currentThemeIndex]);
+      const newTheme = themes[currentThemeIndex];
+      document.body.classList.remove(...themes.map(t => t.class));
+      document.body.classList.add(newTheme.class);
+      
+      // 更新 theme-color 元素
+      if (themeColorMeta) {
+        themeColorMeta.setAttribute('content', newTheme.color);
+      }
+      
+      // 存储当前主题索引
+      localStorage.setItem("currentThemeIndex", currentThemeIndex);
     });
 
     // 编辑标题功能
@@ -1441,6 +1464,23 @@
         localStorage.setItem("customTitle", newText.trim());
       }
     }
+
+    // 页面加载时应用存储的主题
+    document.addEventListener("DOMContentLoaded", () => {
+      // 现有的初始化代码...
+
+      // 加载存储的主题
+      const storedThemeIndex = parseInt(localStorage.getItem("currentThemeIndex"));
+      if (!isNaN(storedThemeIndex) && storedThemeIndex >= 0 && storedThemeIndex < themes.length) {
+        currentThemeIndex = storedThemeIndex;
+        const storedTheme = themes[currentThemeIndex];
+        document.body.classList.add(storedTheme.class);
+        if (themeColorMeta) {
+          themeColorMeta.setAttribute('content', storedTheme.color);
+        }
+      }
+    });
+
 
     /************************************************
      *         （六）PWA 注册代码
