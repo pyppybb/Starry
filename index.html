@@ -1,0 +1,1461 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- 引入更多字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@300;400;600&family=Amatic+SC&family=Lobster&display=swap" rel="stylesheet">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌈浮光记🌈</title>
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  
+  <style>
+    /* 全局样式与主题变量 */
+    :root {
+      --primary-color: #ff6f91;
+      --secondary-color: #ffb6c1;
+      --background-gradient: linear-gradient(to bottom, #fffaf0, #ffebf7);
+      --button-gradient: linear-gradient(145deg, #ff9a9e, #fecfef);
+      --button-hover-gradient: linear-gradient(145deg, #ffb6c1, #ffd1d1);
+      --text-color: #4a4a4a;
+      --header-background: var(--secondary-color);
+      --nav-background: #ffe6e6;
+      --footer-background: var(--secondary-color);
+      --section-background: #fff;
+      --box-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    /* 主题1：粉红色（默认） */
+    .theme-pink {
+      --primary-color: #ff6f91;
+      --secondary-color: #ffb6c1;
+      --background-gradient: linear-gradient(to bottom, #fffaf0, #ffebf7);
+      --button-gradient: linear-gradient(145deg, #ff9a9e, #fecfef);
+      --button-hover-gradient: linear-gradient(145deg, #ffb6c1, #ffd1d1);
+      --text-color: #4a4a4a;
+      --header-background: var(--secondary-color);
+      --nav-background: #ffe6e6;
+      --footer-background: var(--secondary-color);
+      --section-background: #fff;
+      --box-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    /* 主题2：蓝色 */
+    .theme-blue {
+      --primary-color: #4facfe;
+      --secondary-color: #00f2fe;
+      --background-gradient: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      --button-gradient: linear-gradient(145deg, #a1c4fd, #c2e9fb);
+      --button-hover-gradient: linear-gradient(145deg, #89f7fe, #66a6ff);
+      --text-color: #333;
+      --header-background: var(--secondary-color);
+      --nav-background: #e0f7fa;
+      --footer-background: var(--secondary-color);
+      --section-background: #fff;
+      --box-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    /* 主题3：绿色 */
+    .theme-green {
+      --primary-color: #a8e063;
+      --secondary-color: #56ab2f;
+      --background-gradient: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      --button-gradient: linear-gradient(145deg, #a8e063, #56ab2f);
+      --button-hover-gradient: linear-gradient(145deg, #4caf50, #81c784);
+      --text-color: #333;
+      --header-background: var(--secondary-color);
+      --nav-background: #c8e6c9;
+      --footer-background: var(--secondary-color);
+      --section-background: #fff;
+      --box-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    /* 主题4：莫兰迪色 */
+    .theme-morandi {
+      --primary-color: #8e9aaf;
+      --secondary-color: #c1c8d6;
+      --background-gradient: linear-gradient(to bottom, #dce3eb, #f0f4f7);
+      --button-gradient: linear-gradient(145deg, #aab8c2, #c1c8d6);
+      --button-hover-gradient: linear-gradient(145deg, #8e9aaf, #aab8c2);
+      --text-color: #333;
+      --header-background: var(--secondary-color);
+      --nav-background: #dce3eb;
+      --footer-background: var(--secondary-color);
+      --section-background: #fff;
+      --box-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    /* 主题5：多巴胺色 */
+    .theme-dopamine {
+      --primary-color: #ff9a9e;
+      --secondary-color: #fad0c4;
+      --background-gradient: linear-gradient(to bottom, #fad0c4, #ffd1ff);
+      --button-gradient: linear-gradient(145deg, #ff9a9e, #fad0c4);
+      --button-hover-gradient: linear-gradient(145deg, #ffb6c1, #ffe6e6);
+      --text-color: #333;
+      --header-background: var(--secondary-color);
+      --nav-background: #ffe6e6;
+      --footer-background: var(--secondary-color);
+      --section-background: #fff;
+      --box-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    /* 主题6：优化版奶油色 */
+    .theme-cream {
+      --primary-color: #f6d365; /* 温暖奶油黄 */
+      --secondary-color: #f9c57d; /* 柔和焦糖色 */
+      --background-gradient: linear-gradient(to bottom, #f7e0b4, #fff0db); /* 更柔和的背景 */
+      --button-gradient: linear-gradient(145deg, #f5c16c, #f9d795); /* 按钮改为更深一点的黄色 */
+      --button-hover-gradient: linear-gradient(145deg, #f3b963, #f7cb8b); /* 按钮悬停时的渐变 */
+      --text-color: #4a4a4a; /* 略深的灰色，保证对比度 */
+      --header-background: var(--secondary-color);
+      --nav-background: #fcecd2; /* 让导航栏颜色更柔和 */
+      --footer-background: var(--secondary-color);
+      --section-background: #fffdf5; /* 让内容区更接近奶油色 */
+      --box-shadow: rgba(0, 0, 0, 0.08); /* 降低阴影的对比度，使其更柔和 */
+    }
+
+    /* 主题7：深色 */
+    .theme-dark {
+      --primary-color: #bb86fc;
+      --secondary-color: #3700b3;
+      --background-gradient: linear-gradient(to bottom, #121212, #1f1f1f);
+      --button-gradient: linear-gradient(145deg, #3700b3, #bb86fc);
+      --button-hover-gradient: linear-gradient(145deg, #bb86fc, #3700b3);
+      --text-color: #ffffff;
+      --header-background: #1f1f1f;
+      --nav-background: #121212;
+      --footer-background: #1f1f1f;
+      --section-background: #1f1f1f;
+      --box-shadow: rgba(255, 255, 255, 0.1);
+    }
+
+    /* 默认主题 */
+    body {
+      font-family: 'Nunito', sans-serif; /* 清新无衬线字体 */
+      background-color: #fff7f0; /* 奶油背景 */
+      color: var(--text-color); /* 柔和深灰色 */
+      margin: 0;
+      padding: 0;
+      background: var(--background-gradient);
+      transition: background 0.5s, color 0.5s;
+    }
+
+    /* 标题字体 */
+    h1, h2, h3, header {
+      font-family: 'Pacifico', 'Amatic SC', 'Lobster', cursive; /* 手写风格与可爱字体 */
+      color: var(--primary-color); /* 主题主色 */
+      transition: color 0.5s;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: var(--header-background);
+      padding: 20px 10px;
+      font-size: 2.5em;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 4px 10px var(--box-shadow);
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      cursor: pointer; /* 变成按钮样式 */
+      /* user-select: none; */ /* 移除禁止选中文本 */
+      user-select: text; /* 允许选中文本以支持双击编辑 */
+      transition: background-color 0.5s;
+      position: relative; /* 为了放置编辑按钮 */
+    }
+
+    /* 新增编辑按钮样式 */
+    #edit-title-btn {
+      display: none; /* 初始隐藏，仅移动设备显示 */
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--button-gradient);
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+
+    #edit-title-btn:hover {
+      background: var(--button-hover-gradient);
+    }
+
+    /* 媒体查询，针对移动设备显示编辑按钮 */
+    @media (max-width: 768px) {
+      #edit-title-btn {
+        display: block;
+      }
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: var(--nav-background);
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 10px var(--box-shadow);
+      transition: background-color 0.5s;
+    }
+    nav button {
+      padding: 12px 25px;
+      border: none;
+      background: var(--button-gradient); /* 主题按钮渐变 */
+      cursor: pointer;
+      font-size: 1em;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      color: white;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Nunito', sans-serif;
+    }
+    nav button::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(45deg) scale(0);
+      transition: transform 0.5s;
+    }
+    nav button:hover::before {
+      transform: rotate(45deg) scale(1);
+    }
+    nav button:hover {
+      background: var(--button-hover-gradient); /* 主题按钮悬停渐变 */
+      transform: scale(1.05);
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .section {
+      background-color: var(--section-background);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    .section.hidden {
+      display: none;
+    }
+
+    textarea {
+      width: 90%;
+      height: 60px;
+      border: 2px solid var(--primary-color);
+      border-radius: 10px;
+      padding: 10px;
+      resize: none;
+      font-size: 1em;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s ease;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    textarea:focus {
+      border-color: var(--secondary-color);
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-size: 1em;
+      cursor: pointer;
+      background: var(--button-gradient);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      color: white;
+      font-family: 'Nunito', sans-serif;
+    }
+    button:hover {
+      background: var(--button-hover-gradient);
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)); /* 渐变色背景 */
+      color: white;
+      padding: 18px 0;
+      font-size: 1.1em;
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      transition: background 0.5s, transform 0.3s ease-in-out;
+      font-family: 'Pacifico', cursive; /* 替换成复古可爱的字体 */
+      letter-spacing: 1px; /* 增加间距，让文字更优雅 */
+      font-weight: bold;
+      box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1); /* 让底部稍微有立体感 */
+    }
+
+    /* 鼠标悬停时让 footer 轻微浮起 */
+    footer:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* 轻微反转渐变色 */
+    }
+
+    #timer-display {
+      font-size: 3em;
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-weight: bold;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: color 0.5s;
+    }
+
+    /* 美化音乐选择器 */
+    #music-selector {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid var(--secondary-color);
+      border-radius: 15px;
+      font-size: 1.2em;
+      background: linear-gradient(to bottom, #fffaf0, #ffebf7);
+      box-shadow: 0 3px 8px rgba(255, 105, 135, 0.15);
+      color: var(--primary-color);
+      font-weight: bold;
+      text-align: center;  /* 兼容部分浏览器 */
+      text-align-last: center;  /* 让选中的文本居中 */
+      appearance: none;  /* 隐藏默认下拉样式 */
+      display: flex; /* 让内部文本居中 */
+      align-items: center; /* 垂直居中 */
+      justify-content: center; /* 水平居中 */
+      text-indent: 1px; /* 解决部分浏览器偏移问题 */
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* 让下拉列表的选项文字也居中 */
+    #music-selector option {
+      text-align: center;
+    }
+
+    #history-container {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fffbe6;
+      max-height: 200px;
+      overflow-y: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* 美化下拉菜单容器（若在其他处使用） */
+    select {
+      font-size: 16px; /* 调整字体大小 */
+      font-family: 'Nunito', sans-serif; /* 字体风格 */
+      color: var(--primary-color); /* 字体颜色 */
+      background-color: #ffe4e1; /* 背景颜色 */
+      border: 2px solid var(--secondary-color); /* 边框颜色 */
+      border-radius: 20px; /* 圆角 */
+      padding: 5px 15px; /* 内边距 */
+      cursor: pointer;
+      appearance: none; /* 移除默认箭头 */
+      outline: none; /* 移除聚焦时的蓝色边框 */
+      transition: all 0.3s ease; /* 添加过渡效果 */
+      font-family: 'Nunito', sans-serif;
+    }
+    select:hover {
+      background-color: #ffd1d1; /* 鼠标悬停时 */
+      border-color: var(--primary-color);
+    }
+
+    /* 尾巴任务 - 积分与商城弹窗 */
+    #points-display {
+      position: relative;
+      float: right;
+      margin-top: -60px;
+      margin-right: 10px;
+      font-size: 1.2em;
+      color: var(--primary-color);
+      cursor: pointer;
+      transition: color 0.5s;
+      font-family: 'Nunito', sans-serif;
+    }
+    #points-display span {
+      font-weight: bold;
+    }
+    #shop-modal {
+      display: none;
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      overflow-y: auto;
+      max-height: 80vh;
+      transition: all 0.3s ease;
+      font-family: 'Nunito', sans-serif;
+    }
+    #shop-modal h2 {
+      text-align: center;
+      color: var(--primary-color);
+      transition: color 0.5s;
+      font-family: 'Pacifico', cursive;
+    }
+    #shop-modal button.close-btn {
+      background-color: #f0adad;
+      float: right;
+      margin-top: -5px;
+      margin-right: -5px;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+    }
+    #shop-items {
+      margin-top: 20px;
+    }
+    .shop-item {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #ffe6e6;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+      font-family: 'Nunito', sans-serif;
+    }
+    .shop-item span {
+      font-size: 1em;
+      color: var(--primary-color);
+      transition: color 0.5s;
+    }
+    .shop-item button {
+      background: var(--button-gradient);
+      color: white;
+      border-radius: 15px;
+      padding: 5px 15px;
+      font-size: 0.9em;
+      transition: background 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+    }
+    .shop-item button:hover {
+      background: var(--button-hover-gradient);
+    }
+    #exchange-history {
+      margin-top: 20px;
+      background-color: #fffbe6;
+      padding: 10px;
+      border-radius: 10px;
+      max-height: 150px;
+      overflow-y: auto;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      font-family: 'Nunito', sans-serif;
+    }
+    #exchange-history h4 {
+      margin-bottom: 10px;
+      color: var(--primary-color);
+      transition: color 0.5s;
+      font-family: 'Pacifico', cursive;
+    }
+    #exchange-history-list {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    /* 添加自定义奖励表单 */
+    #add-reward-form {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 2px dashed var(--secondary-color);
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+    }
+    #add-reward-form h3 {
+      margin-top: 0;
+      color: var(--primary-color);
+      transition: color 0.5s;
+      font-family: 'Pacifico', cursive;
+    }
+    #add-reward-form input[type="text"],
+    #add-reward-form input[type="number"] {
+      width: 45%;
+      padding: 8px;
+      margin-right: 5%;
+      margin-bottom: 10px;
+      border: 1px solid var(--primary-color);
+      border-radius: 5px;
+      font-size: 1em;
+      transition: border-color 0.3s ease;
+      font-family: 'Nunito', sans-serif;
+    }
+    #add-reward-form input[type="text"]:focus,
+    #add-reward-form input[type="number"]:focus {
+      border-color: var(--secondary-color);
+      outline: none;
+    }
+    #add-reward-form button {
+      padding: 8px 20px;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-family: 'Nunito', sans-serif;
+    }
+    #add-reward-form button:hover {
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    }
+
+    /* 任务完成动画 - 滑出 */
+    .task-complete-animation {
+      animation: slideOut 1s forwards ease-in-out;
+    }
+    @keyframes slideOut {
+      0% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    /* 美化尾巴任务分类按钮 */
+    .task-category-buttons {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .task-category-buttons button {
+      flex: 1 1 22%; /* 四个按钮均分一行 */
+      padding: 12px 0;
+      font-size: 1em;
+      border-radius: 25px;
+      background: var(--button-gradient);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, background 0.3s ease;
+      font-family: 'Nunito', sans-serif;
+    }
+    .task-category-buttons button::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(45deg) scale(0);
+      transition: transform 0.5s;
+    }
+    .task-category-buttons button:hover::before {
+      transform: rotate(45deg) scale(1);
+    }
+    .task-category-buttons button:hover {
+      background: var(--button-hover-gradient);
+      transform: scale(1.05);
+    }
+
+    /* 调整任务页面布局 */
+    #tasks h2 {
+      margin-bottom: 20px;
+      font-family: 'Pacifico', cursive;
+    }
+    #tasks p {
+      margin-bottom: 10px;
+      font-size: 1.1em;
+      font-family: 'Nunito', sans-serif;
+    }
+    #tasks label {
+      font-size: 1em;
+      font-family: 'Nunito', sans-serif;
+    }
+    #task-log button {
+      margin-left: 10px;
+      background: var(--button-gradient);
+      color: white;
+      border-radius: 15px;
+      padding: 5px 10px;
+      font-size: 0.9em;
+      transition: background 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+    }
+    #task-log button:hover {
+      background: var(--button-hover-gradient);
+    }
+    #completed-tasks, #exchange-history-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* 编辑心得样式 */
+    .reflection {
+      margin-left: 20px;
+      font-size: 0.9em;
+      color: #555;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+    }
+    .reflection:hover {
+      text-decoration: underline;
+    }
+
+    /* 主题切换动画 */
+    .theme-transition {
+      transition: all 0.5s ease;
+    }
+  </style>
+</head>
+<body class="theme-pink">
+
+  <header id="theme-switcher">
+    🍬咕噜噜🍬
+    <!-- 添加编辑按钮，仅在移动设备显示 -->
+    <button id="edit-title-btn" onclick="editTitle()">✏️</button>
+  </header>
+
+  <nav>
+    <button onclick="toggleSection('diary')">📮咕噜小记</button>
+    <button onclick="toggleSection('tasks')">🦺尾巴任务</button>
+    <button onclick="toggleSection('pomodoro')">⏳番茄钟</button>
+  </nav>
+
+  <main>
+    <!-- 幸福瞬间日记 -->
+    <section id="diary" class="section hidden">
+      <h2>✨咕噜小记</h2>
+      <div id="today-moments">
+        <h3>今天（<span id="current-date"></span>）</h3>
+        <div id="moment-container">
+          <div class="moment">
+            <textarea placeholder="写下第一个开心瞬间..."></textarea>
+            <div class="emojis">
+              <button onclick="selectEmoji(this)">😊</button>
+              <button onclick="selectEmoji(this)">🥰</button>
+              <button onclick="selectEmoji(this)">🎉</button>
+            </div>
+          </div>
+          <div class="moment">
+            <textarea placeholder="写下第二个开心瞬间..."></textarea>
+            <div class="emojis">
+              <button onclick="selectEmoji(this)">😊</button>
+              <button onclick="selectEmoji(this)">🥰</button>
+              <button onclick="selectEmoji(this)">🎉</button>
+            </div>
+          </div>
+          <div class="moment">
+            <textarea placeholder="写下第三个开心瞬间..."></textarea>
+            <div class="emojis">
+              <button onclick="selectEmoji(this)">😊</button>
+              <button onclick="selectEmoji(this)">🥰</button>
+              <button onclick="selectEmoji(this)">🎉</button>
+            </div>
+          </div>
+        </div>
+        <br> 
+        <button onclick="saveMoments()">保存</button>
+        <button onclick="toggleSection('diary')">关闭</button>
+      </div>
+      <div id="history">
+        <h3>历史记录</h3>
+        <div id="history-container"></div>
+      </div>
+    </section>
+
+    <!-- 尾巴任务 -->
+    <section id="tasks" class="section hidden">
+      <h2>🐈尾巴任务</h2>
+
+      <!-- 积分显示（点击可打开兑换商城） -->
+      <div id="points-display" onclick="openShop()">
+        当前积分：<span id="points-value">0</span>
+      </div>
+
+      <!-- 选择分类并生成多个任务（最多3个） -->
+      <div class="task-category-buttons">
+        <button onclick="generateTasks('exercise')">🏃‍♂️ 运动</button>
+        <button onclick="generateTasks('study')">📚 学习</button>
+        <button onclick="generateTasks('creativity')">🌈 创意</button>
+        <button onclick="generateTasks('random')">🧸 随机</button>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label>
+          生成数量：
+          <input type="number" id="task-count" value="1" min="1" max="3" style="width: 50px; text-align: center;">
+        </label>
+      </div>
+
+      <!-- 待做任务区 -->
+      <h3>待做任务</h3>
+      <ul id="task-log" style="margin-top: 15px;"></ul>
+      <button onclick="clearTasks()">清空任务</button>
+
+      <!-- 已完成任务（当日） -->
+      <h3>已完成任务</h3>
+      <ul id="completed-tasks"></ul>
+
+      <!-- 任务历史记录 -->
+      <h3>任务历史记录</h3>
+      <div id="task-history-container" style="margin-top: 15px;"></div>
+    </section>
+
+    <!-- 番茄钟 -->
+    <section id="pomodoro" class="section hidden">
+      <h2>⌛番茄钟</h2>
+      <div id="timer-display">25:00</div>
+      <div>
+        <label>工作时长（分钟）：</label>
+        <input type="number" id="work-duration" value="25" min="1">
+      </div>
+      <div>
+        <label>休息时长（分钟）：</label>
+        <input type="number" id="break-duration" value="5" min="1">
+      </div>
+      <div>
+        <br> 
+        <button onclick="startTimer()">开始</button>
+        <button onclick="pauseTimer()">暂停</button>
+        <button onclick="resetTimer()">重置</button>
+      </div>
+      <p id="current-status">当前状态：未开始</p>
+      <h3>🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋 🦋</h3>
+      <select id="music-selector">
+        <option value="music1">Vincentz - Iced Americano</option>
+        <option value="music2">Monday</option>
+        <option value="music3">一起</option>
+        <option value="music4">至少做一件离谱的事</option>
+      </select>
+      <audio id="background-music" preload="auto"></audio>
+    </section>
+  </main>
+
+  <footer>
+    ❤️ © 2025 一个人要像一支队伍 ❤️
+  </footer>
+
+  <!-- 兑换商城弹窗 -->
+  <div id="shop-modal">
+    <button class="close-btn" onclick="closeShop()">X</button>
+    <h2>兑换商店</h2>
+    <div id="shop-items">
+      <!-- 示例兑换选项，将在JS中动态生成 -->
+    </div>
+
+    <!-- 添加自定义奖励表单 -->
+    <div id="add-reward-form">
+      <h3>添加自定义奖励</h3>
+      <input type="text" id="custom-reward-name" placeholder="奖励名称">
+      <input type="number" id="custom-reward-cost" placeholder="所需积分" min="1">
+      <button onclick="addCustomReward()">添加奖励</button>
+    </div>
+
+    <div id="exchange-history">
+      <h4>兑换记录</h4>
+      <ul id="exchange-history-list"></ul>
+    </div>
+  </div>
+
+  <script>
+    /************************************************
+     *           （一）咕噜小记相关代码
+     ************************************************/
+    document.addEventListener("DOMContentLoaded", () => {
+      const themeSwitcher = document.getElementById("theme-switcher");
+      const editTitleBtn = document.getElementById("edit-title-btn");
+      const currentDate = new Date().toISOString().split("T")[0];
+      document.getElementById("current-date").innerText = currentDate;
+      updateHistory();
+      updateCompletedTasks();
+      loadCustomTitle();
+
+      // 允许用户自定义标题文本（桌面双击）
+      themeSwitcher.addEventListener("dblclick", () => {
+        const newText = prompt("请输入新的标题文本：", themeSwitcher.innerText);
+        if (newText !== null && newText.trim() !== "") {
+          themeSwitcher.innerText = newText.trim();
+          // 保存自定义标题到 localStorage
+          localStorage.setItem("customTitle", newText.trim());
+        }
+      });
+
+      // 添加点击编辑按钮功能（移动设备）
+      editTitleBtn.addEventListener("click", () => {
+        const newText = prompt("请输入新的标题文本：", themeSwitcher.innerText);
+        if (newText !== null && newText.trim() !== "") {
+          themeSwitcher.innerText = newText.trim();
+          // 保存自定义标题到 localStorage
+          localStorage.setItem("customTitle", newText.trim());
+        }
+      });
+    });
+
+    // 加载自定义标题
+    function loadCustomTitle() {
+      const customTitle = localStorage.getItem("customTitle");
+      if (customTitle) {
+        document.getElementById("theme-switcher").innerText = customTitle;
+      }
+    }
+
+    function toggleSection(sectionId) {
+      const sections = ['diary', 'tasks', 'pomodoro'];
+      const targetSection = document.getElementById(sectionId);
+      const isHidden = targetSection.classList.contains('hidden');
+
+      // 关闭所有其他部分
+      sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (id !== sectionId) {
+          section.classList.add('hidden');
+        }
+      });
+
+      // 切换目标部分
+      if (isHidden) {
+        targetSection.classList.remove('hidden');
+      } else {
+        targetSection.classList.add('hidden');
+      }
+    }
+
+    function selectEmoji(button) {
+      const siblings = button.parentElement.querySelectorAll('button');
+      siblings.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+    }
+
+    function saveMoments() {
+      const moments = [];
+      document.querySelectorAll('.moment').forEach(moment => {
+        const text = moment.querySelector('textarea').value.trim();
+        const selectedEmoji = moment.querySelector('button.selected')?.textContent || "😶";
+        if (text) {
+          moments.push({ text, emoji: selectedEmoji });
+        }
+      });
+
+      const currentDate = new Date().toISOString().split("T")[0];
+      const allMoments = JSON.parse(localStorage.getItem("gululuMoments")) || {};
+      allMoments[currentDate] = moments;
+      localStorage.setItem("gululuMoments", JSON.stringify(allMoments));
+
+      updateHistory();
+      alert("咕噜小记保存成功！");
+    }
+
+    function updateHistory() {
+      const allMoments = JSON.parse(localStorage.getItem("gululuMoments")) || {};
+      const historyContainer = document.getElementById("history-container");
+      if (!historyContainer) return;
+
+      historyContainer.innerHTML = "";
+      Object.keys(allMoments).forEach(date => {
+        const entryDiv = document.createElement("div");
+        entryDiv.classList.add("history-entry");
+
+        const dateTitle = document.createElement("h4");
+        dateTitle.innerText = date;
+        dateTitle.onclick = () => {
+          const ul = entryDiv.querySelector("ul");
+          ul.style.display = (ul.style.display === "none") ? "block" : "none";
+        };
+
+        const ul = document.createElement("ul");
+        ul.style.display = "none";
+        allMoments[date].forEach(({ text, emoji }) => {
+          const li = document.createElement("li");
+          li.innerText = `${emoji} ${text}`;
+          ul.appendChild(li);
+        });
+
+        entryDiv.appendChild(dateTitle);
+        entryDiv.appendChild(ul);
+        historyContainer.appendChild(entryDiv);
+      });
+    }
+
+    /************************************************
+     *           （二）尾巴任务 相关代码
+     ************************************************/
+    // 任务分类与内容
+    const tasksByCategory = {
+      exercise: [
+        "跑步1000米","做15个俯卧撑","跳绳50次","练习5分钟瑜伽","步行2000步","拉伸全身5分钟",
+        "深蹲10次","仰卧起坐10次","快走10分钟","站立踮脚30次","高抬腿30次","平板支撑20秒",
+        "原地开合跳20次","单腿站立30秒","坐姿扭腰10次","侧卧抬腿10次","手臂伸展运动3分钟",
+        "深蹲跳5次","扶墙静蹲30秒","踢腿运动10次","慢跑5分钟","手臂绕圈30次","左右跨步跳10次",
+        "大腿后弯10次","小步快跑原地20秒","脚尖走路1分钟","站立抬膝15次","猫式伸展5次",
+        "蝴蝶式拉伸2分钟","肩部环绕伸展2分钟","原地慢跑3分钟","深蹲+站立拉伸10次","仰卧腿举5次",
+        "后踢腿10次","动态拉伸胳膊2分钟","肩膀后绕10次","靠墙抬腿1分钟","腹部收缩10次",
+        "膝盖提拉20次","抬头下腰10次","脖子环绕1分钟","猫牛式拉伸5次","下蹲静止10秒",
+        "趴在地上做手臂俯卧撑5次","原地跳跃5次","背部后仰10次","双腿大步向前10次",
+        "左右拉伸腰部10次","爬楼梯5层","踩单车3分钟","压腿5分钟"
+      ],
+      study: [
+        "阅读5页书籍","记住3个单词","学习一项新知识","总结今天的学习心得","浏览一篇感兴趣的文章",
+        "听10分钟英语听力","写3句话的英文日记","看一段有趣的科普视频","完成一个简单的编程练习",
+        "整理学习资料5分钟","翻看一本旧笔记","查一个不知道的单词用法","练习简单的口语对话",
+        "背诵一首短诗","画一张学习思维导图","学习一个Excel函数","模仿一段英语演讲1分钟",
+        "查阅一篇历史事件","了解一项冷知识","写下今天学到的三件事","观看一个TED视频",
+        "整理电子文件夹","读一段你喜欢的小说","练习一种常用句式","尝试写简单的代码小程序",
+        "用英语搜索一个问题","记住一个数学公式","复习一篇笔记","思考如何用新知识解决问题",
+        "设置明天的学习目标","查一个感兴趣的科技新闻","阅读一篇短新闻并总结","背诵五个常用短语",
+        "学习一种常用修辞手法","模仿写一段TED演讲内容","熟悉一个CSS属性用法","整理书桌3分钟",
+        "学会一种新的句式表达","尝试记录自己的思考过程","学习一个新的编程概念","记住3句有趣的英文短句",
+        "完成一页数学习题","记下一段新闻内容的重点","翻阅一本工具书","为今天的知识点创建记忆卡片",
+        "将学习内容分享给朋友","观看一集科普纪录片","尝试背诵一个有趣的小故事","查找某个问题的解决方案",
+        "总结最近一周的学习内容"
+      ],
+      creativity: [
+        "画一幅简单的插画","写一首小诗","设计一件创意小物","尝试做一道新菜",
+        "对着镜子说3次：‘我是全世界最可爱的小狗！’","给自己泡一杯热茶，放松心情。",
+        "用5分钟时间记住10个完全无关的单词，背给daddy听！","出去散步10分钟，感受大自然的美好。",
+        "听一首自己最喜欢的歌，闭上眼睛好好感受！","完成20个开合跳，过程中保持笑容！",
+        "打开投影仪，跟随一个帕梅拉的舞蹈视频完成5分钟。","独自完成一件你一直觉得有点难的事，比如整理房间或计划明天。",
+        "读完纸质书一章内容，并总结3个有意思的点分享给daddy。","随机播放一首歌，用其中一句歌词来形容daddy。",
+        "做一个轻松的伸展动作，比如抬头深呼吸10秒，告诉daddy感觉。","闭上眼睛，随手拍一张家里任意角落的照片，发给daddy，让我猜是哪儿。",
+        "在3分钟内，写下10个自己喜欢的东西，不准停笔。","在房间里找一样特别的小物件，讲它的故事给daddy听。",
+        "在3分钟内，随手画一只“大花狗”，画完给daddy评分。","随机翻开手机里的相册，挑一张老照片讲一个甜蜜的回忆。",
+        "把你的耳机或耳环戴起来，拍照发给daddy，展示一下小狗的可爱样子。","颜色命名：观察一样特别的颜色，给它起个符合它的名字，比如“海盐蓝”。",
+        "帽子侦探：找到3个戴帽子的人，把他们的帽子颜色描述给daddy听。","影子捕手：拍下3个形状特别的影子，给它们起名字。",
+        "小狗计数：在周围找到5个圆形的东西，把它们排成一行拍照。","随机歌王：在路上听到的一句话，把它变成一首歌的歌词。",
+        "颜色狩猎：在10分钟内找到5样不同颜色的物品。","自然纹理：找到一片叶子或者一块石头，描述它的纹路。",
+        "小动物观察：今天留意3种动物，不管是路上的猫狗还是飞鸟。","奇怪数字：在一小时内，找到三个车牌号带“8”的车。",
+        "广告解密：观察5个广告牌，用一句话总结它们的主题。","名字配对：挑3件物品，给它们起名字，比如“笔叫阿蓝”。",
+        "影子玩偶：用手影或者物品影子创造一个简单的“表演”。","足迹探索：找一个地上特殊的脚印或者痕迹，描述它像什么。",
+        "云朵想象：看天上的云，找到3朵像某种动物的。","随机方向：闭眼随便指一个方向，走到100步后描述你看到的风景。",
+        "数字挑战：今天观察到的每个数字，找到一个有趣的规律。","建筑密码：挑一个建筑，找出它3个你没注意过的小细节。",
+        "招牌观察：记下路上看到3个商店的名字，选一个你觉得最好听的。","寻找三角形：今天找到3个三角形的物品。",
+        "声音地图：闭眼听10秒钟，写下你听到的所有声音。","影子谜题：用身边物品的影子创造一个“小狗”的形状。"
+      ],
+      random: []
+    };
+    // 将所有任务合并到 random 里
+    Object.values(tasksByCategory).forEach(categoryTasks => {
+      if (categoryTasks !== tasksByCategory.random) {
+        tasksByCategory.random.push(...categoryTasks);
+      }
+    });
+
+    // 存储已完成任务
+    let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || {};
+
+    // 用户积分
+    let userPoints = parseInt(localStorage.getItem("userPoints")) || 0;
+    const pointsDisplay = document.getElementById("points-value");
+
+    // 连续完成任务计数（当日是否已完成任务 + 本周天数统计）
+    let dailyTaskCount = 0; // 用于判断是否达到3个连续任务
+    // 记录最近连续完成任务的天数
+    let consecutiveDays = parseInt(localStorage.getItem("consecutiveDays")) || 0;
+    let lastCompleteDate = localStorage.getItem("lastCompleteDate") || null;
+
+    updatePointsDisplay();
+    updateCompletedTasks(); // 页面加载时更新
+
+    // 生成多个任务（最多3个）
+    function generateTasks(category) {
+      const countInput = document.getElementById("task-count");
+      let count = parseInt(countInput.value) || 1;
+      if (count < 1) count = 1;
+      if (count > 3) count = 3;
+      countInput.value = count; // 确保输入框内显示正确的值
+      const taskList = tasksByCategory[category];
+      if (!taskList || taskList.length === 0) return;
+
+      for (let i = 0; i < count; i++) {
+        const randomIndex = Math.floor(Math.random() * taskList.length);
+        const randomTask = taskList[randomIndex];
+        addTaskToLog(randomTask, category);
+      }
+    }
+
+    // 将任务显示到“待做任务”列表
+    function addTaskToLog(taskName, category) {
+      const taskLog = document.getElementById("task-log");
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${taskName}
+        <button onclick="markTaskComplete(this, '${taskName}', '${category}')">完成</button>
+      `;
+      taskLog.appendChild(li);
+    }
+
+    // 完成任务：动画 + 积分 + 连续3个任务判定 + 编辑心得
+    function markTaskComplete(button, task, category) {
+      const li = button.parentElement;
+      li.classList.add('task-complete-animation');
+
+      // 动画结束后从待做列表移除
+      li.addEventListener('animationend', () => {
+        li.remove();
+      });
+
+      // 获取心得
+      const reflection = prompt("请为完成的任务添加心得：", "");
+
+      // 更新已完成任务记录
+      const today = new Date().toISOString().split("T")[0];
+      if (!completedTasks[today]) completedTasks[today] = [];
+      completedTasks[today].push({ task, reflection });
+      localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
+      updateCompletedTasks();
+
+      // 计算积分
+      let earned = 0;
+      if (category === 'exercise' || category === 'creativity') {
+        earned = 2;
+      } else if (category === 'study') {
+        earned = 3;
+      } else {
+        // random => 1~3
+        earned = Math.floor(Math.random() * 3) + 1;
+      }
+
+      userPoints += earned;
+      dailyTaskCount += 1;
+
+      // 连续 3 个任务 => 额外 +5
+      if (dailyTaskCount === 3) {
+        userPoints += 5;
+        alert("恭喜完成 3 个任务，再额外 +5 分！");
+      }
+
+      // 7 天连续打卡判断
+      updateConsecutiveDays(today);
+
+      // 更新积分
+      localStorage.setItem("userPoints", userPoints);
+      updatePointsDisplay();
+    }
+
+    // 更新当日已完成任务 & 历史记录
+    function updateCompletedTasks() {
+      const completedList = document.getElementById("completed-tasks");
+      completedList.innerHTML = "";
+
+      const today = new Date().toISOString().split("T")[0];
+      const todayTasks = completedTasks[today] || [];
+
+      todayTasks.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          ${item.task}
+          ${item.reflection ? `<div class="reflection" onclick="editReflection('${today}', ${index})">心得：${item.reflection}</div>` : ''}
+        `;
+        completedList.appendChild(li);
+      });
+
+      updateTaskHistory();
+    }
+
+    // 编辑心得
+    function editReflection(date, index) {
+      const currentReflection = completedTasks[date][index].reflection || "";
+      const newReflection = prompt("编辑心得：", currentReflection);
+      if (newReflection !== null) { // 用户没有点击取消
+        completedTasks[date][index].reflection = newReflection.trim();
+        localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
+        updateCompletedTasks();
+      }
+    }
+
+    // 更新任务历史记录
+    function updateTaskHistory() {
+      const historyContainer = document.getElementById("task-history-container");
+      historyContainer.innerHTML = "";
+
+      Object.keys(completedTasks).forEach(date => {
+        const entryDiv = document.createElement("div");
+        entryDiv.style.marginBottom = "10px";
+
+        const dateTitle = document.createElement("h4");
+        dateTitle.innerText = date;
+        dateTitle.style.cursor = "pointer";
+        dateTitle.style.textDecoration = "underline";
+        dateTitle.addEventListener("click", () => {
+          const ul = entryDiv.querySelector("ul");
+          ul.style.display = ul.style.display === "none" ? "block" : "none";
+        });
+
+        const ul = document.createElement("ul");
+        ul.style.display = "none";
+
+        completedTasks[date].forEach((item, idx) => {
+          const li = document.createElement("li");
+          li.innerHTML = `${item.task}${item.reflection ? ` - 心得：${item.reflection}` : ''}`;
+          ul.appendChild(li);
+        });
+
+        entryDiv.appendChild(dateTitle);
+        entryDiv.appendChild(ul);
+        historyContainer.appendChild(entryDiv);
+      });
+    }
+
+    // 清空待做任务
+    function clearTasks() {
+      document.getElementById("task-log").innerHTML = "";
+    }
+
+    // 积分显示
+    function updatePointsDisplay() {
+      pointsDisplay.innerText = userPoints;
+    }
+
+    // 连续完成天数判断
+    function updateConsecutiveDays(today) {
+      if (!lastCompleteDate) {
+        // 第一次记录
+        consecutiveDays = 1;
+      } else {
+        // 计算上次记录日和今天的差
+        const lastDateObj = new Date(lastCompleteDate);
+        const todayObj = new Date(today);
+        const diffTime = todayObj.getTime() - lastDateObj.getTime();
+        const diffDays = Math.floor(diffTime / (1000 * 3600 * 24));
+
+        if (diffDays === 1) {
+          // 正好隔一天 => 连续天数 +1
+          consecutiveDays += 1;
+        } else if (diffDays > 1) {
+          // 断了，重新记
+          consecutiveDays = 1;
+        }
+      }
+
+      // 如果达到 7 天就提示神秘奖励
+      if (consecutiveDays === 7) {
+        alert("哇，已经连续 7 天完成任务！获得神秘奖励 🎁 ！");
+      }
+
+      // 更新本次记录
+      lastCompleteDate = today;
+      localStorage.setItem("lastCompleteDate", lastCompleteDate);
+      localStorage.setItem("consecutiveDays", consecutiveDays);
+    }
+
+    /************************************************
+     *         （三）兑换商城 相关代码
+     ************************************************/
+    let exchangeHistory = JSON.parse(localStorage.getItem("exchangeHistory")) || [];
+
+    // 加载自定义奖励
+    let customRewards = JSON.parse(localStorage.getItem("customRewards")) || [];
+
+    function openShop() {
+      document.getElementById("shop-modal").style.display = "block";
+      renderShopItems();
+      renderExchangeHistory();
+    }
+
+    function closeShop() {
+      document.getElementById("shop-modal").style.display = "none";
+    }
+
+    function exchangeItem(itemName, cost) {
+      if (userPoints < cost) {
+        alert("积分不足，快去完成任务赚积分吧~");
+        return;
+      }
+      // 扣除积分
+      userPoints -= cost;
+      localStorage.setItem("userPoints", userPoints);
+      updatePointsDisplay();
+
+      // 记录兑换历史
+      const time = new Date().toLocaleString();
+      exchangeHistory.push({ item: itemName, cost: cost, time: time });
+      localStorage.setItem("exchangeHistory", JSON.stringify(exchangeHistory));
+
+      alert(`兑换成功！获得【${itemName}】，消耗积分 ${cost}。`);
+      renderExchangeHistory();
+    }
+
+    function renderExchangeHistory() {
+      const historyList = document.getElementById("exchange-history-list");
+      historyList.innerHTML = "";
+      exchangeHistory.forEach(record => {
+        const li = document.createElement("li");
+        li.textContent = `[${record.time}] 兑换 ${record.item} - 消耗 ${record.cost}分`;
+        historyList.appendChild(li);
+      });
+    }
+
+    // 添加自定义奖励
+    function addCustomReward() {
+      const rewardNameInput = document.getElementById("custom-reward-name");
+      const rewardCostInput = document.getElementById("custom-reward-cost");
+      const rewardName = rewardNameInput.value.trim();
+      const rewardCost = parseInt(rewardCostInput.value);
+
+      if (!rewardName) {
+        alert("请输入奖励名称！");
+        return;
+      }
+      if (isNaN(rewardCost) || rewardCost < 1) {
+        alert("请输入有效的积分数！");
+        return;
+      }
+
+      // 检查是否有重复的奖励名称
+      const existingReward = [...customRewards, ...predefinedRewards].find(r => r.name === rewardName);
+      if (existingReward) {
+        alert("奖励名称已存在，请选择另一个名称！");
+        return;
+      }
+
+      // 添加到自定义奖励列表
+      const newReward = { name: rewardName, cost: rewardCost };
+      customRewards.push(newReward);
+      localStorage.setItem("customRewards", JSON.stringify(customRewards));
+
+      // 清空输入框
+      rewardNameInput.value = "";
+      rewardCostInput.value = "";
+
+      // 重新渲染商城
+      renderShopItems();
+
+      alert(`自定义奖励【${rewardName}】已添加，需 ${rewardCost} 积分！`);
+    }
+
+    // 渲染商城奖励项目，包括预定义和自定义奖励
+    function renderShopItems() {
+      const shopItemsContainer = document.getElementById("shop-items");
+      shopItemsContainer.innerHTML = ""; // 清空现有项目
+
+      // 预定义奖励
+      predefinedRewards.forEach(reward => {
+        const div = document.createElement("div");
+        div.classList.add("shop-item");
+        div.innerHTML = `
+          <span>${reward.icon} ${reward.name}（${reward.cost}分）</span>
+          <button onclick="exchangeItem('${reward.name}', ${reward.cost})">兑换</button>
+        `;
+        shopItemsContainer.appendChild(div);
+      });
+
+      // 自定义奖励
+      customRewards.forEach(reward => {
+        const div = document.createElement("div");
+        div.classList.add("shop-item");
+        div.innerHTML = `
+          <span>${reward.name}（${reward.cost}分）</span>
+          <button onclick="exchangeItem('${reward.name}', ${reward.cost})">兑换</button>
+        `;
+        shopItemsContainer.appendChild(div);
+      });
+    }
+
+    // 预定义奖励列表（已更换为物质奖励）
+    const predefinedRewards = [
+      { name: "🍰小蛋糕", icon: "🍰", cost: 25 },
+      { name: "👗小裙子", icon: "👗", cost: 80 },
+      { name: "🥘大餐", icon: "🥘", cost: 80 },
+      { name: "💅🏻美甲", icon: "💅🏻", cost: 90 },
+      { name: "✈️旅游", icon: "✈️", cost: 100 },
+      { name: "📱电子产品", icon: "📱", cost: 150 },
+      { name: "👠新鞋子", icon: "👠", cost: 90 },
+      { name: "💆🏻‍♀️按摩", icon: "💆🏻‍♀️", cost: 60 }
+    ];
+
+    // 初始化商城项目
+    renderShopItems();
+
+    /************************************************
+     *     （四）番茄钟 相关代码（优化后）
+     ************************************************/
+    let workTimeTimerVar = 25 * 60; // 默认25分钟
+    let breakTimeTimerVar = 5 * 60;  // 默认5分钟
+    let isWorkTimeTimerVar = true;   // 是否在工作时间
+    let timerIntervalTimer = null;
+    let remainingTimeTimer = workTimeTimerVar;
+
+    const musicFilesTimer = {
+      tick: "https://downsc.chinaz.net/Files/DownLoad/sound1/202311/y2237.mp3",
+      music1: "https://tangguanzimusic.oss-cn-guangzhou.aliyuncs.com/Vincentz%20-%20Iced%20Americano.mp3",
+      music2: "https://tangguanzimusic.oss-cn-guangzhou.aliyuncs.com/Monday.mp3",
+      music3: "https://tangguanzimusic.oss-cn-guangzhou.aliyuncs.com/%E4%B8%80%E8%B5%B7.mp3",
+      music4: "https://tangguanzimusic.oss-cn-guangzhou.aliyuncs.com/%E8%87%B3%E5%B0%91%E5%81%9A%E4%B8%80%E4%BB%B6%E7%A6%BB%E8%B0%B1%E7%9A%84%E4%BA%8B.mp3",
+    };
+    const backgroundMusicTimer = document.getElementById("background-music");
+    const musicSelector = document.getElementById("music-selector");
+
+    // 初始化选择的音乐
+    let selectedMusic = musicSelector.value;
+
+    // 监听音乐选择变化
+    musicSelector.addEventListener("change", () => {
+      selectedMusic = musicSelector.value;
+      if (!isWorkTimeTimerVar) { // 只有在休息时更改音乐才需要立即更换
+        backgroundMusicTimer.src = musicFilesTimer[selectedMusic];
+        backgroundMusicTimer.play();
+      }
+    });
+
+    function updateDisplayTimer() {
+      const minutes = Math.floor(remainingTimeTimer / 60);
+      const seconds = remainingTimeTimer % 60;
+      document.getElementById("timer-display").innerText = 
+        `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    }
+
+    function playMusicTimer() {
+      if (isWorkTimeTimerVar) {
+        backgroundMusicTimer.src = musicFilesTimer.tick;
+        backgroundMusicTimer.loop = true;
+      } else {
+        backgroundMusicTimer.src = musicFilesTimer[selectedMusic];
+        backgroundMusicTimer.loop = true; // 休息时循环播放
+      }
+      backgroundMusicTimer.play();
+    }
+
+    function startTimer() {
+      // 读取并更新工作和休息时间
+      const workInput = parseInt(document.getElementById("work-duration").value);
+      const breakInput = parseInt(document.getElementById("break-duration").value);
+      workTimeTimerVar = (!isNaN(workInput) && workInput > 0) ? workInput * 60 : 25 * 60;
+      breakTimeTimerVar = (!isNaN(breakInput) && breakInput > 0) ? breakInput * 60 : 5 * 60;
+
+      // 根据当前状态设置剩余时间
+      remainingTimeTimer = isWorkTimeTimerVar ? workTimeTimerVar : breakTimeTimerVar;
+      updateDisplayTimer();
+
+      if (timerIntervalTimer) {
+        // 如果计时器已经在运行，重新启动以应用新的时间
+        clearInterval(timerIntervalTimer);
+        timerIntervalTimer = null;
+      }
+
+      playMusicTimer(); // 播放音效或音乐
+      timerIntervalTimer = setInterval(() => {
+        if (remainingTimeTimer > 0) {
+          remainingTimeTimer--;
+          updateDisplayTimer();
+        } else {
+          clearInterval(timerIntervalTimer);
+          timerIntervalTimer = null;
+          isWorkTimeTimerVar = !isWorkTimeTimerVar;
+          remainingTimeTimer = isWorkTimeTimerVar ? workTimeTimerVar : breakTimeTimerVar;
+          document.getElementById("current-status").innerText = 
+            `当前状态：${isWorkTimeTimerVar ? "工作中" : "休息中"}`;
+          playMusicTimer();
+          startTimer(); // 自动开始下一个状态
+        }
+      }, 1000);
+      document.getElementById("current-status").innerText = 
+        `当前状态：${isWorkTimeTimerVar ? "工作中" : "休息中"}`;
+    }
+
+    function pauseTimer() {
+      if (timerIntervalTimer) {
+        clearInterval(timerIntervalTimer);
+        timerIntervalTimer = null;
+        document.getElementById("current-status").innerText = "当前状态：暂停中";
+        backgroundMusicTimer.pause();
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerIntervalTimer);
+      timerIntervalTimer = null;
+      isWorkTimeTimerVar = true;
+      const workInput = parseInt(document.getElementById("work-duration").value);
+      workTimeTimerVar = (!isNaN(workInput) && workInput > 0) ? workInput * 60 : 25 * 60;
+      const breakInput = parseInt(document.getElementById("break-duration").value);
+      breakTimeTimerVar = (!isNaN(breakInput) && breakInput > 0) ? breakInput * 60 : 5 * 60;
+      remainingTimeTimer = workTimeTimerVar;
+      document.getElementById("current-status").innerText = "当前状态：未开始";
+      backgroundMusicTimer.pause();
+      backgroundMusicTimer.currentTime = 0;
+      updateDisplayTimer();
+    }
+
+    /************************************************
+     *           （五）主题切换相关代码
+     ************************************************/
+    // 主题列表
+    const themes = ['theme-pink', 'theme-blue', 'theme-green', 'theme-morandi', 'theme-dopamine', 'theme-cream', 'theme-dark'];
+    let currentThemeIndex = 0;
+
+    // 点击标题切换主题
+    const themeSwitcherElement = document.getElementById("theme-switcher");
+    themeSwitcherElement.addEventListener("click", () => {
+      currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+      document.body.classList.remove(...themes);
+      document.body.classList.add(themes[currentThemeIndex]);
+    });
+
+    // 编辑标题功能
+    function editTitle() {
+      const themeSwitcher = document.getElementById("theme-switcher");
+      const newText = prompt("请输入新的标题文本：", themeSwitcher.innerText);
+      if (newText !== null && newText.trim() !== "") {
+        themeSwitcher.innerText = newText.trim();
+        // 保存自定义标题到 localStorage
+        localStorage.setItem("customTitle", newText.trim());
+      }
+    }
+
+    /************************************************
+     *         （六）PWA 注册代码
+     ************************************************/
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker 注册成功：', registration);
+          })
+          .catch(error => {
+            console.log('ServiceWorker 注册失败：', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
